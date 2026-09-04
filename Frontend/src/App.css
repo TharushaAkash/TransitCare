@@ -345,7 +345,22 @@
   padding: 4px 6px 0;
 }
 
+.user-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 4px 6px 0;
+}
+
 .admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.user-header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -356,6 +371,13 @@
   margin: 6px 0 10px;
   color: #0f172a;
   font-size: clamp(1.9rem, 4vw, 3rem);
+  letter-spacing: -0.05em;
+}
+
+.user-header h1 {
+  margin: 6px 0 10px;
+  color: #0f172a;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   letter-spacing: -0.05em;
 }
 
@@ -375,6 +397,22 @@
   text-align: right;
 }
 
+.user-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.user-profile-copy {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+}
+
 .admin-avatar {
   width: 42px;
   height: 42px;
@@ -384,6 +422,22 @@
   background: linear-gradient(135deg, #f59e0b, #fb7185);
   color: white;
   font-weight: 700;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f59e0b, #fb7185);
+  color: white;
+  font-weight: 700;
+}
+
+.user-subtitle {
+  margin: 0;
+  color: #64748b;
 }
 
 .admin-status-tabs {
@@ -972,6 +1026,10 @@
   margin-top: 2px;
 }
 
+.user-eyebrow {
+  margin-bottom: 2px;
+}
+
 .home-feature-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1052,6 +1110,7 @@
 
   .topbar,
   .admin-header,
+  .user-header,
   .section-head,
   .admin-table-head,
   .auth-actions {

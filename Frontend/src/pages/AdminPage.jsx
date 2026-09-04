@@ -7,15 +7,7 @@ import {
   statusOptions,
 } from '../complaintShared.js'
 
-const sidebarItems = [
-  { label: 'Dashboard', active: true },
-  { label: 'All Complaints', active: false },
-  { label: 'Pending', active: false },
-  { label: 'Under Review', active: false },
-  { label: 'Resolved', active: false },
-  { label: 'Rejected', active: false },
-  { label: 'Settings', active: false },
-]
+const sidebarItems = [{ label: 'Dashboard', active: true }]
 
 const statusOrder = ['Submitted', 'InReview', 'Resolved', 'Rejected']
 

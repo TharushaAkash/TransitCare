@@ -58,7 +58,6 @@ function ComplaintCard({ complaint }) {
 
 function ComplaintDashboard({
   title,
-  endpointLabel,
   session,
   filters,
   onFiltersChange,
@@ -92,7 +91,7 @@ function ComplaintDashboard({
       <div className="section-head">
         <div>
           <p className="eyebrow">{title}</p>
-          <h2>{endpointLabel}</h2>
+          <h2>Show my complaints</h2>
         </div>
         <span className="pill">{activeCount} filters active</span>
       </div>
@@ -203,6 +202,7 @@ function ComplaintDashboard({
 export default function UserPage({
   session,
   apiBaseUrl,
+  onLogout,
   createForm,
   onCreateFormChange,
   onCreateSubmit,
@@ -227,6 +227,27 @@ export default function UserPage({
 
   return (
     <section className="page-grid dashboard-grid">
+      <header className="user-header">
+        <div>
+          <p className="eyebrow user-eyebrow">User dashboard</p>
+          <h1>Welcome back, {session.name || 'User'}</h1>
+          <p className="user-subtitle">Signed in as {session.role || 'User'}{session.userId ? ` · ID ${session.userId}` : ''}</p>
+        </div>
+
+        <div className="user-header-actions">
+          <div className="user-profile">
+            <div className="user-profile-copy">
+              <strong>{session.name || 'User'}</strong>
+              <span>{session.userId || 'ID unavailable'}</span>
+            </div>
+            <div className="user-avatar">{(session.name || 'U').slice(0, 1).toUpperCase()}</div>
+          </div>
+          <button type="button" className="secondary-btn light-btn user-logout-btn" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
+      </header>
+
       <section className="panel">
         <div className="section-head">
           <div>
@@ -318,8 +339,7 @@ export default function UserPage({
       </section>
 
       <ComplaintDashboard
-        title="User complaints"
-        endpointLabel="GET /api/user-complaints"
+        title="My complaints"
         session={session}
         filters={filters}
         onFiltersChange={onFiltersChange}

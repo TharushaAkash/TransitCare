@@ -337,7 +337,7 @@ export default function App() {
 
   return (
     <main className={shellClassName}>
-      {page !== 'admin' && page !== 'home' ? (
+      {page !== 'admin' && page !== 'home' && page !== 'user' && page !== 'login' ? (
         <Navigation
           page={page}
           session={session}
@@ -383,6 +383,7 @@ export default function App() {
         <UserPage
           session={session}
           apiBaseUrl={apiBaseUrl}
+          onLogout={onLogout}
           createForm={createForm}
           onCreateFormChange={(patch) => setCreateForm((current) => ({ ...current, ...patch }))}
           onCreateSubmit={onCreateSubmit}
