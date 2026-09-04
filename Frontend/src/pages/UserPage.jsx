@@ -227,24 +227,11 @@ export default function UserPage({
 
   return (
     <section className="page-grid dashboard-grid">
-      <ComplaintDashboard
-        title="User complaints"
-        endpointLabel="GET /api/user-complaints"
-        session={session}
-        filters={filters}
-        onFiltersChange={onFiltersChange}
-        complaints={complaints}
-        loading={loading}
-        error={error}
-        onRefresh={onRefresh}
-        onReset={onReset}
-      />
-
       <section className="panel">
         <div className="section-head">
           <div>
-            <p className="eyebrow">Create complaint</p>
-            <h2>Submit a new complaint</h2>
+            <p className="eyebrow">User dashboard</p>
+            <h2>Submit complaint</h2>
           </div>
           <button
             type="button"
@@ -256,7 +243,7 @@ export default function UserPage({
           </button>
         </div>
 
-        <p className="helper-text">Your complaint will be stored under your user id automatically.</p>
+        <p className="helper-text">Click the button to open the complaint form.</p>
 
         {showCreateForm ? (
           <>
@@ -327,13 +314,21 @@ export default function UserPage({
             {createMessage ? <p className="success-banner" style={{ marginTop: '16px' }}>{createMessage}</p> : null}
             {createError ? <p className="error-box" style={{ marginTop: '16px' }}>{createError}</p> : null}
           </>
-        ) : (
-          <div className="empty-state compact" style={{ marginTop: '18px' }}>
-            <h3>Complaint form hidden</h3>
-            <p>Click submit complaint to open the form and create a new request.</p>
-          </div>
-        )}
+        ) : null}
       </section>
+
+      <ComplaintDashboard
+        title="User complaints"
+        endpointLabel="GET /api/user-complaints"
+        session={session}
+        filters={filters}
+        onFiltersChange={onFiltersChange}
+        complaints={complaints}
+        loading={loading}
+        error={error}
+        onRefresh={onRefresh}
+        onReset={onReset}
+      />
 
       <p className="helper-text page-footer-note">API base URL: {apiBaseUrl}</p>
     </section>

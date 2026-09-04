@@ -9,6 +9,7 @@ import {
   buildQueryString,
   emptyCreateForm,
   emptyFilters,
+  statusOptions,
   safeStorageRead,
   joinUrl,
   hasActiveFilters,
@@ -74,6 +75,9 @@ export default function App() {
   const [adminLoading, setAdminLoading] = useState(false)
   const [userError, setUserError] = useState('')
   const [adminError, setAdminError] = useState('')
+  const [adminActionError, setAdminActionError] = useState('')
+  const [adminActionMessage, setAdminActionMessage] = useState('')
+  const [adminSavingId, setAdminSavingId] = useState(null)
 
   useEffect(() => {
     try {
@@ -249,6 +253,9 @@ export default function App() {
     setCreateMessage('')
     setUserError('')
     setAdminError('')
+    setAdminActionError('')
+    setAdminActionMessage('')
+    setAdminSavingId(null)
   }
 
   const onCreateSubmit = async (event) => {
@@ -293,6 +300,30 @@ export default function App() {
   const clearAdminFilters = () => {
     setAdminFilters(emptyFilters)
     setAdminComplaints([])
+  }
+
+  const onAdminStatusChange = async ({ id, status }) => {
+    if (!id || !status || status === 'All') {
+      return
+    }
+
+    setAdminSavingId(id)
+    setAdminActionError('')
+    setAdminActionMessage('')
+
+    try {
+      await callApi(`/api/complaints/${id}/status`, {
+        method: 'PUT',
+        body: JSON.stringify({ status }),
+      })
+
+      setAdminActionMessage(`Complaint #${id} updated to ${status}.`)
+      await loadComplaints('admin', adminFilters)
+    } catch (error) {
+      setAdminActionError(error.message)
+    } finally {
+      setAdminSavingId(null)
+    }
   }
 
   const shellClassName =
@@ -371,11 +402,16 @@ export default function App() {
       {page === 'admin' ? (
         <AdminPage
           session={session}
+          onLogout={onLogout}
           filters={adminFilters}
           onFiltersChange={updateAdminFilters}
           complaints={adminComplaints}
           loading={adminLoading}
           error={adminError}
+          statusUpdateError={adminActionError}
+          statusUpdateMessage={adminActionMessage}
+          statusSavingId={adminSavingId}
+          onStatusChange={onAdminStatusChange}
           onRefresh={refreshAdmin}
           onReset={clearAdminFilters}
         />

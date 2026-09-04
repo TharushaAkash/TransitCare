@@ -345,6 +345,13 @@
   padding: 4px 6px 0;
 }
 
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .admin-header h1 {
   margin: 6px 0 10px;
   color: #0f172a;
@@ -377,6 +384,40 @@
   background: linear-gradient(135deg, #f59e0b, #fb7185);
   color: white;
   font-weight: 700;
+}
+
+.admin-status-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.admin-status-tab {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: #ffffff;
+  color: #334155;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    background 0.18s ease;
+}
+
+.admin-status-tab:hover {
+  transform: translateY(-1px);
+}
+
+.admin-status-tab.active {
+  background: linear-gradient(135deg, #fff7ed 0%, #fde68a 100%);
+  color: #9a3412;
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow: 0 12px 24px rgba(245, 158, 11, 0.14);
 }
 
 .admin-metrics {
@@ -841,6 +882,92 @@
   margin-top: 12px;
 }
 
+.status-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.status-column {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.status-column-head {
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: #f8fafc;
+}
+
+.status-column-head h3 {
+  margin: 6px 0 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+}
+
+.status-column-list {
+  display: grid;
+  gap: 12px;
+  min-height: 120px;
+}
+
+.admin-complaint-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+.admin-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-card-head h3 {
+  margin: 4px 0 0;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.admin-card-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-card-meta span {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #64748b;
+}
+
+.admin-card-meta strong {
+  display: block;
+  margin-top: 4px;
+  color: #0f172a;
+}
+
+.admin-card-meta small {
+  color: #64748b;
+}
+
+.admin-status-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+
 .page-footer-note {
   margin-top: 2px;
 }
@@ -908,6 +1035,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .status-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .info-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -938,6 +1069,7 @@
   .admin-metrics,
   .summary-strip,
   .home-feature-grid,
+  .status-board,
   .filter-grid,
   .split-grid,
   .info-grid,
@@ -961,5 +1093,10 @@
   .admin-table th,
   .admin-table td {
     padding: 14px 14px;
+  }
+
+  .admin-card-meta,
+  .admin-status-editor {
+    grid-template-columns: 1fr;
   }
 }
