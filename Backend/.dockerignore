@@ -1,0 +1,8 @@
+bin/
+obj/
+.vs/
+.vscode/
+Dockerfile*
+*.user
+*.suo
+appsettings.Development.json
